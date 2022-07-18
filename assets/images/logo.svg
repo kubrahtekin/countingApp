@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="462" height="61" viewBox="0 0 462 61">
+  <defs>
+    <clipPath id="clip-path">
+      <rect y="42" width="386" height="61" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect y="42" width="386" height="60" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect x="6" y="46" width="388" height="61" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-4">
+      <rect x="6" y="44" width="390" height="63" fill="none"/>
+    </clipPath>
+    <filter id="novadsa" x="71.5" y="-45.5" width="436" height="138" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feFlood flood-color="#576f72"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_7" data-name="Group 7" transform="translate(-155 -640.498)">
+    <g id="Group_6" data-name="Group 6" transform="translate(155 640.806)">
+      <rect id="Rectangle_5" data-name="Rectangle 5" width="60" height="60" transform="translate(0 -0.307)" fill="#fff"/>
+      <g id="novadsa-2" data-name="novadsa" transform="translate(0.28)">
+        <g id="Group_4" data-name="Group 4">
+          <path id="Path_1" data-name="Path 1" d="M269.31,252.74v59.72h59.72V252.74Zm42.27,42.27H286.749V282.605a12.416,12.416,0,0,1,24.831,0Z" transform="translate(-269.31 -252.74)" fill="#00bdac"/>
+          <g id="Group_3" data-name="Group 3">
+            <path id="Path_2" data-name="Path 2" d="M269.31,252.74v59.72h59.72V252.74Zm42.27,42.27H286.749V282.605a12.416,12.416,0,0,1,24.831,0Z" transform="translate(-269.31 -252.74)" fill="rgba(0,0,0,0)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g id="Scroll_Group_1" data-name="Scroll Group 1" transform="translate(231 598.498)" clip-path="url(#clip-path)" style="mix-blend-mode: normal;isolation: isolate">
+      <g id="Scroll_Group_4" data-name="Scroll Group 4" clip-path="url(#clip-path-2)" style="mix-blend-mode: normal;isolation: isolate">
+        <g id="Scroll_Group_5" data-name="Scroll Group 5" transform="translate(-5.5 -4.5)" clip-path="url(#clip-path-3)" style="mix-blend-mode: normal;isolation: isolate">
+          <g id="Scroll_Group_6" data-name="Scroll Group 6" clip-path="url(#clip-path-4)" style="mix-blend-mode: normal;isolation: isolate">
+            <g transform="matrix(1, 0, 0, 1, -70.5, 46.5)" filter="url(#novadsa)">
+              <text id="novadsa-3" data-name="novadsa" transform="translate(76 -42)" fill="#00bdac" font-size="92" font-family="Poppins-SemiBold, Poppins" font-weight="600"><tspan x="0" y="97">nova</tspan><tspan y="97" font-size="72">DSA</tspan></text>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
