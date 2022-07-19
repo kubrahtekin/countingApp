@@ -13,9 +13,9 @@ class CountingApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Counting App',
-      initialRoute: '/home',    // start page
+      initialRoute: '/open',    // start page
       routes: {
-        //'/open': (BuildContext context) => const OpenPage(),
+        '/open': (BuildContext context) => const OpenPage(),
         // first
         '/home': (BuildContext context) => const HomePage(),
         // second
