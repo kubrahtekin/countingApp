@@ -8,6 +8,7 @@ class OpenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Counting App',
       // TODO: add this part logo (-)
       //home: const Center(
@@ -22,13 +23,13 @@ class OpenPage extends StatelessWidget {
       //  height: 128.0,
       //),
       home: Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10), //apply padding to some sides only
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0), //apply padding to some sides only
           decoration: const BoxDecoration(color: Color.fromRGBO(228, 220, 207, 1)),
           child:Stack(
               alignment: Alignment.center,
               children: <Widget>[
                 Container(
-                  padding: const EdgeInsets.only(left:0, bottom: 1, right: 1, top:1),
+                  padding: const EdgeInsets.only(left:0, bottom: 0, right: 0, top:0),
                   height: (MediaQuery.of(context).size.height/1334)*61 ,
                   width: (MediaQuery.of(context).size.width/750)*462 ,
                   child:Row(
