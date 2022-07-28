@@ -1,9 +1,29 @@
+import 'package:counting_app/home.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
-class OpenPage extends StatelessWidget {
+class OpenPage extends StatefulWidget {
   const OpenPage({Key? key}) : super(key: key);
+
+  @override
+  OpenPageState createState() => OpenPageState();
+}
+class OpenPageState extends State<OpenPage> {
+
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 4),
+            ()=>Navigator.pushReplacement(context,
+            MaterialPageRoute(builder:
+                (context) =>
+                const HomePage()
+            )
+        )
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,8 @@ import 'package:counting_app/icons.dart';
 import 'package:counting_app/open.dart';
 import 'package:flutter/material.dart';
 
+import 'image.dart';
+
 Color appBar = const Color.fromRGBO(87, 111, 114, 1);
 bool control = false;
 //bool isVisible = !false;
@@ -31,11 +33,13 @@ class HomePageState extends State<HomePage> {
       ),
       title: 'Counting App',
       home: Scaffold(
+        extendBodyBehindAppBar: true,
+        //backgroundColor: const Color.fromRGBO(87, 111, 114, 1),
         appBar: AppBar(
           toolbarHeight: (MediaQuery
               .of(context)
               .size
-              .height / 1334) * 667,
+              .height / 1334) * 602,  // 667
           // helps get height from device
           backgroundColor: appBar,
 
@@ -308,7 +312,7 @@ class HomePageState extends State<HomePage> {
               height: (MediaQuery
                   .of(context)
                   .size
-                  .height / 1334) * 431,
+                  .height / 1334) * 1086,  //431
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(30.0), // adjust to your liking
@@ -323,7 +327,7 @@ class HomePageState extends State<HomePage> {
                       height: (MediaQuery
                           .of(context)
                           .size
-                          .height / 1334) * 51,
+                          .height / 1334) * 718,  //51
                     ),
                     SizedBox(
                       height: (MediaQuery
@@ -359,7 +363,8 @@ class HomePageState extends State<HomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(
+                        Container(
+                          alignment: Alignment.center,
                           height: (MediaQuery
                               .of(context)
                               .size
@@ -368,12 +373,28 @@ class HomePageState extends State<HomePage> {
                               .of(context)
                               .size
                               .width / 750) * 168,
-                          child:Container(
-                            padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all( Radius.circular(30),),
+                            color: const Color.fromRGBO(87, 111, 114, 1),
+                            border: Border.all(
+                                color: const Color.fromRGBO(112, 112, 112, 1),
+                                width: 1.0,
+                                //style: BorderStyle.solid
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                          child:TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const ImagePage()));
+                            },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget> [
-                                SizedBox(
+                                Container(
+                                  margin: const EdgeInsets.only(left: 5, right: 10),
+                                  padding: const EdgeInsets.symmetric(vertical: 0 , horizontal: 0),
                                   height: (MediaQuery
                                       .of(context)
                                       .size
@@ -393,11 +414,11 @@ class HomePageState extends State<HomePage> {
                                   height: (MediaQuery
                                       .of(context)
                                       .size
-                                      .height / 1334) * 92,
+                                      .height / 1334) * 33,
                                   width: (MediaQuery
                                       .of(context)
                                       .size
-                                      .width / 750) * 33,
+                                      .width / 750) * 92,
                                   child:FittedBox(
                                     fit: BoxFit.contain,
                                     child: Text(
@@ -417,6 +438,7 @@ class HomePageState extends State<HomePage> {
                               ],
                             ),
                           ),
+
                         ),
                         SizedBox(
                           height: (MediaQuery
@@ -429,7 +451,9 @@ class HomePageState extends State<HomePage> {
                               .width / 750) * 136,
                         ),
                         Container(
+                          alignment: Alignment.center,
                           padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                          //margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                           height: (MediaQuery
                               .of(context)
                               .size
@@ -438,12 +462,52 @@ class HomePageState extends State<HomePage> {
                               .of(context)
                               .size
                               .width / 750) * 168,
-                          child:Center(
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all( Radius.circular(30),),
+                            color: const Color.fromRGBO(87, 111, 114, 1),
+                            border: Border.all(
+                              color: const Color.fromRGBO(112, 112, 112, 1),
+                              width: 1.0,
+                              //style: BorderStyle.solid
+                            ),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => const CameraPage()));
+                            },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget> [
-                                const Icon(MyFlutterApp.camera_solid,color: Color.fromRGBO(240, 235, 227, 1)),
-                                FittedBox(
+                                Container(
+                                  margin: const EdgeInsets.only(left: 5, right: 10),
+                                  padding: const EdgeInsets.symmetric(vertical: 0 , horizontal: 0),
+                                  height: (MediaQuery
+                                      .of(context)
+                                      .size
+                                      .height / 1334) * 106.9,
+                                  width: (MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width / 750) * 122.18,
+                                  child: const FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: Icon(MyFlutterApp.camera_solid,color: Color.fromRGBO(240, 235, 227, 1)),
+                                  ),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                                  padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                                  height: (MediaQuery
+                                      .of(context)
+                                      .size
+                                      .height / 1334) * 33,
+                                  width: (MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width / 750) * 102,
+                                  child: FittedBox(
                                     fit: BoxFit.contain,
                                     child: Text(
                                       'camera',
@@ -458,10 +522,11 @@ class HomePageState extends State<HomePage> {
                                           fontFamily: 'PoppinsS'),
                                     ),
                                   ),
+                                ),
                               ],
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],
