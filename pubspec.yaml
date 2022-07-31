@@ -34,7 +34,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  flutter_svg: ^1.1.1+1
 
 dev_dependencies:
   flutter_test:
@@ -53,13 +52,14 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   fonts:
-    - family: Poppins
+    - family: PoppinsRegular
       fonts:
         - asset: assets/fonts/Poppins-Regular.ttf
-        - asset: assets/fonts/Poppins-Semibold.ttf
-    - family: PoppinsS
+          weight: 400
+    - family: PoppinsSemibold
       fonts:
         - asset: assets/fonts/Poppins-Semibold.ttf
+          weight: 600
     - family: MyFlutterApp
       fonts:
         - asset: assets/fonts/MyFlutterApp.ttf

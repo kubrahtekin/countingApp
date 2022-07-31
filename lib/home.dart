@@ -76,7 +76,7 @@ class HomePageState extends State<HomePage> {
                           fontSize: 72 * MediaQuery
                               .of(context)
                               .textScaleFactor,
-                          fontFamily: 'Poppins'),
+                          fontFamily: 'PoppinsRegular'),
                     ),
                   ),
                 ),
@@ -116,7 +116,7 @@ class HomePageState extends State<HomePage> {
                           fontSize: 36 * MediaQuery
                               .of(context)
                               .textScaleFactor,
-                          fontFamily: 'Poppins'),
+                          fontFamily: 'PoppinsRegular'),
                     ),
                   ),
                 ),
@@ -249,7 +249,7 @@ class HomePageState extends State<HomePage> {
                                       fontSize: 24 * MediaQuery
                                           .of(context)
                                           .textScaleFactor,
-                                      fontFamily: 'PoppinsS'),
+                                      fontFamily: 'PoppinsSemibold'),
                                 ),
                               ),
                             ],
@@ -350,7 +350,7 @@ class HomePageState extends State<HomePage> {
                               fontSize: 36 * MediaQuery
                                   .of(context)
                                   .textScaleFactor,
-                              fontFamily: 'Poppins'),
+                              fontFamily: 'PoppinsRegular'),
                         ),
                       ),
                     ),
@@ -431,7 +431,7 @@ class HomePageState extends State<HomePage> {
                                           fontSize: 24 * MediaQuery
                                               .of(context)
                                               .textScaleFactor,
-                                          fontFamily: 'PoppinsS'),
+                                          fontFamily: 'PoppinsSemibold'),
                                     ),
                                   ),
                                 ),
@@ -519,7 +519,7 @@ class HomePageState extends State<HomePage> {
                                           fontSize: 24 * MediaQuery
                                               .of(context)
                                               .textScaleFactor,
-                                          fontFamily: 'PoppinsS'),
+                                          fontFamily: 'PoppinsSemibold'),
                                     ),
                                   ),
                                 ),

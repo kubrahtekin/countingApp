@@ -1,7 +1,7 @@
 import 'package:counting_app/home.dart';
+import 'package:counting_app/icons.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter_svg/flutter_svg.dart';
 
 
 class OpenPage extends StatefulWidget {
@@ -57,14 +57,43 @@ class OpenPageState extends State<OpenPage> {
                     //crossAxisAlignment: CrossAxisAlignment.baseline,
                     //mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      Image.asset('assets/images/novadsa.png'),  //, width: (MediaQuery.of(context).size.width/750)*61 , height: (MediaQuery.of(context).size.height/1334)*61
+                      //Image.asset('assets/images/novadsa.png'),  //, width: (MediaQuery.of(context).size.width/750)*61 , height: (MediaQuery.of(context).size.height/1334)*61
+                      Container(
+                        margin: const EdgeInsets.only(left: 0, right: 0,bottom: 7.5,top: 0),
+                        padding: const EdgeInsets.symmetric(vertical: 0 , horizontal: 0),
+                        height: (MediaQuery
+                            .of(context)
+                            .size
+                            .height / 1334) * 61,
+                        width: (MediaQuery
+                            .of(context)
+                            .size
+                            .width / 750) * 61,
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child:Stack(children: <Widget>[
+                            Positioned.fill(
+                              child: Container(
+                                margin: EdgeInsets.all(5), // Modify this till it fills the color properly
+                                color: Colors.white, // Color
+                              ),
+                            ),
+                            const Icon(
+                               MyFlutterApp.novadsa_logo, // Icon
+                              color: Color.fromRGBO(0,189,172,1),
+                            ),
+                          ]),
+                          //child: Icon(MyFlutterApp.novadsa_logo, color:  Color.fromRGBO(0,189,172,1),),
+                        ),
+                      ),
+                      //const Icon(MyFlutterApp.novadsa_logo, color:  Color.fromRGBO(0,189,172,1),),
                       FittedBox(
                         fit: BoxFit.contain,
                         child:RichText(
                           text: const TextSpan(
                             children: [
-                              TextSpan(text: " nova", style: TextStyle(decoration: TextDecoration.none, color: Color.fromRGBO(0,189,172,1), fontSize: 92 , fontFamily: 'PoppinsS',height: 0.77)),
-                              TextSpan(text: "DSA", style: TextStyle(decoration: TextDecoration.none, color: Color.fromRGBO(0,189,172,1), fontSize: 72 , fontFamily: 'PoppinsS',height: 0.77)),
+                              TextSpan(text: " nova", style: TextStyle(decoration: TextDecoration.none, color: Color.fromRGBO(0,189,172,1), fontSize: 92 , fontFamily: 'PoppinsSemibold',height: 0.8)),
+                              TextSpan(text: "DSA", style: TextStyle(decoration: TextDecoration.none, color: Color.fromRGBO(0,189,172,1), fontSize: 72 , fontFamily: 'PoppinsSemibold',height: 0.8)),
                             ],
                           ),
                         ),

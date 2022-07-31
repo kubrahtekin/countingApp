@@ -12,4 +12,6 @@ class MyFlutterApp {
   static const IconData camera_solid = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData circle_solid = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData image_solid = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData novadsa_logo = IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData caret_up_solid = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
