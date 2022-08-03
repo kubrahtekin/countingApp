@@ -23,9 +23,9 @@ class CountingApp extends StatelessWidget {
         // first
         '/home': (BuildContext context) => const HomePage(),
         // second
-        '/image' : (BuildContext context) => const ImagePage(),
+        //'/image' : (BuildContext context) => const ImagePage(),
         // third
-        '/camera' : (BuildContext context) => const CameraPage(),
+        //'/camera' : (BuildContext context) => const CameraPage(),
         //fourth
         '/result' : (BuildContext context) => const ResultPage(),
       },

@@ -1,7 +1,9 @@
 import 'package:counting_app/camera.dart';
 import 'package:counting_app/icons.dart';
+import 'dart:io';
 import 'package:counting_app/open.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'image.dart';
 
@@ -19,8 +21,19 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
 
+  File? image;
   ShowHide showBox = ShowHide(isVisible: false);
   ListItem dropdownValue = ListItem(title: ' ', isSelected: true, icon: const Icon(MyFlutterApp.circle_solid,color: Color.fromRGBO(87, 111, 114, 1), size: 24));
+
+  Future pickImage(BuildContext context) async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if(image == null) return;
+    final imageTemp = File(image.path);
+    setState(() => this.image = imageTemp);
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ImagePage(image: this.image)));
+  }
 
 
   @override
@@ -385,9 +398,10 @@ class HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                           child:TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => const ImagePage()));
+                              pickImage(context);
+                              //Navigator.push(
+                              //    context,
+                              //    MaterialPageRoute(builder: (context) => ImagePage(image: image)));
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -475,7 +489,7 @@ class HomePageState extends State<HomePage> {
                             onPressed: () {
                               Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) => const CameraPage()));
+                                          MaterialPageRoute(builder: (context) => CameraPage()));
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,

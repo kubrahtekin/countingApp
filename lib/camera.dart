@@ -1,9 +1,19 @@
 import 'package:counting_app/icons.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
+class CameraPage extends StatefulWidget {
+  CameraPage({Key? key}) : super(key: key);
 
-class CameraPage extends StatelessWidget {
-  const CameraPage({Key? key}) : super(key: key);
+  @override
+  CameraPageState createState() => CameraPageState();
+}
+
+class CameraPageState extends State<CameraPage> {
+  /// Variables
+  late File imageFile;
+
 
   @override
   Widget build(BuildContext context) {
@@ -96,6 +106,11 @@ class CameraPage extends StatelessWidget {
         ),
         // rounded navigation bar
         //**
+        body:Container(
+          child: getFromCamera(),
+          ),
+
+
         bottomNavigationBar: Container(
           height: (MediaQuery
               .of(context)
@@ -247,6 +262,18 @@ class CameraPage extends StatelessWidget {
         //),
       ),
     );
+  }
+  getFromCamera() async {
+    PickedFile? pickedFile = (await ImagePicker().pickImage(
+      source: ImageSource.camera,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    )) as PickedFile?;
+    if (pickedFile != null) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+      });
+    }
   }
 }
 

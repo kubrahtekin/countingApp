@@ -1,9 +1,28 @@
+import 'dart:io';
 import 'package:counting_app/icons.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-
+//class ImagePage extends StatefulWidget {
+//  final File? image;
+//  const ImagePage({Key? key, this.image}) : super(key: key);
+//
+//  @override
+//  ImagePageState createState() => ImagePageState();
+//}
+//
+//class ImagePageState extends State<ImagePage> {
 class ImagePage extends StatelessWidget {
-  const ImagePage({Key? key}) : super(key: key);
+  final File? image;
+  const ImagePage({Key? key, required this.image}) : super(key: key);
+
+//
+  //Future pickImage() async {
+  //    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+  //    if(image == null) return;
+  //    final imageTemp = File(image.path);
+  //    setState(() => this.image = imageTemp);
+  //}
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +32,8 @@ class ImagePage extends StatelessWidget {
           scaffoldBackgroundColor: const Color.fromRGBO(228, 220, 207, 0.8)),
       title: 'Counting App',
       home: Scaffold(
+        extendBody: true,
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
           toolbarHeight: (MediaQuery
               .of(context)
@@ -96,6 +117,46 @@ class ImagePage extends StatelessWidget {
         ),
         // rounded navigation bar
         //**
+        //body:FutureBuilder<dynamic>(
+        //    future:pickImage(),
+        //  builder: (context, snapshot) {
+        //    if (!snapshot.hasData) return Container(); // or some other placeholder
+        //    return Container(
+        //     // decoration: BoxDecoration(
+        //     //     image: DecorationImage(
+        //     //       image: FileImage(snapshot.data),
+        //     //       fit: BoxFit.cover,
+        //     //     )),
+        //      child: image != null ? Image.file(image!): const Text("No image selected") ,
+        //    );
+        //  },
+            //initialData:image != null ? Image.file(image!): const Text("No image selected") ,
+            //builder:(BuildContext context, AsyncSnapshot<dynamic> snapshot){
+            //  image != null ? Image.file(image!): const Text("No image selected");
+            //}
+            //image != null ? Image.file(image!): const Text("No image selected"),
+        //),
+        body:Center(
+          child:Container(
+            //margin: EdgeInsets.only(top: 0, bottom: (MediaQuery.of(context).size.height / 1334) * 110, left: 0),
+            alignment: Alignment.center,
+            //width: (MediaQuery
+            //    .of(context)
+            //    .size
+            //    .width / 750) * 750,
+            //height: (MediaQuery
+            //    .of(context)
+            //    .size
+            //    .height / 1334) * 1334,
+            child:image != null ? Image.file(image!,fit: BoxFit.fill,): const Text("No image selected"),
+            //child:Image.file(image!,fit: BoxFit.fill,) ,
+            //child:FittedBox(
+            //  alignment: Alignment.center,
+            //  fit: BoxFit.fill,
+            //  child: image != null ? Image.file(image!): const Text("No image selected"),
+            //),
+          ),
+        ),
         bottomNavigationBar: Container(
           height: (MediaQuery
               .of(context)
@@ -154,8 +215,8 @@ class ImagePage extends StatelessWidget {
                       .of(context)
                       .size
                       .height / 1334) * 157 ,
-                  margin: EdgeInsets.all(0),
-                  padding: EdgeInsets.all(0),
+                  margin: const EdgeInsets.all(0),
+                  padding: const EdgeInsets.all(0),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     //borderRadius: BorderRadius.circular(100),
@@ -250,3 +311,6 @@ class ImagePage extends StatelessWidget {
   }
 }
 
+class ProgressBarHandler {
+  late Function pickImage; // will point to widget show method
+}
