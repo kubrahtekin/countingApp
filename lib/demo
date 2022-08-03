@@ -154,3 +154,19 @@ Open row
                     //)
                   ],
                 ),
+
+              child: IconButton(
+                                  onPressed: () {
+                                    if (widget.cameras.length > 1) {
+                                      setState(() {
+                                        selectedCamera = selectedCamera == 0 ? 1 : 0;
+                                        initializeCamera(selectedCamera);
+                                      });
+                                    } else {
+                                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                        content: Text('No secondary camera found'),
+                                        duration: Duration(seconds: 2),
+                                      ));
+                                    }
+                                  },
+                                  icon: const Icon( MyFlutterApp.camera_rotate_solid, color: Color.fromRGBO(240, 235, 227, 1)),

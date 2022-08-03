@@ -1,9 +1,11 @@
+import 'dart:io';
 import 'package:counting_app/icons.dart';
 import 'package:flutter/material.dart';
 
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
+  final File? image;
+  const ResultPage({Key? key, required this.image}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -131,6 +133,7 @@ class ResultPage extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                   color: Color.fromRGBO(240, 235, 227, 1),
                 ),
+                child: image != null ? Image.file(image!,fit: BoxFit.fill,): const Text("No image selected"),
                 //child: const FittedBox(
                 //  fit: BoxFit.contain,
                 //  child: Icon( MyFlutterApp.image_solid, color: Color.fromRGBO(240, 235, 227, 1)),

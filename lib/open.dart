@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:counting_app/home.dart';
 import 'package:counting_app/icons.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,8 @@ import 'dart:async';
 
 
 class OpenPage extends StatefulWidget {
-  const OpenPage({Key? key}) : super(key: key);
+  final List<CameraDescription> cameras;
+  const OpenPage({Key? key,required this.cameras}) : super(key: key);
 
   @override
   OpenPageState createState() => OpenPageState();
@@ -19,7 +21,7 @@ class OpenPageState extends State<OpenPage> {
             ()=>Navigator.pushReplacement(context,
             MaterialPageRoute(builder:
                 (context) =>
-                const HomePage()
+                HomePage(cameras: widget.cameras)
             )
         )
     );

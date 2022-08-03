@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:counting_app/camera.dart';
 import 'package:counting_app/icons.dart';
 import 'dart:io';
@@ -13,7 +14,8 @@ bool control = false;
 //ListItem dropdownValue = ListItem(title: ' ', isSelected: true, icon: const Icon(MyFlutterApp.circle_solid,color: Color.fromRGBO(87, 111, 114, 1), size: 24));
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final List<CameraDescription> cameras;
+  const HomePage({Key? key,required this.cameras}) : super(key: key);
 
   @override
   State<HomePage> createState() => HomePageState();
@@ -32,7 +34,7 @@ class HomePageState extends State<HomePage> {
     setState(() => this.image = imageTemp);
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ImagePage(image: this.image)));
+        MaterialPageRoute(builder: (context) => ImagePage(image: this.image, cameras: widget.cameras)));
   }
 
 
@@ -489,7 +491,7 @@ class HomePageState extends State<HomePage> {
                             onPressed: () {
                               Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) => CameraPage()));
+                                          MaterialPageRoute(builder: (context) => CameraPage(cameras: widget.cameras)));
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,

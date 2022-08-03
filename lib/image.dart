@@ -1,7 +1,11 @@
 import 'dart:io';
+import 'package:camera/camera.dart';
 import 'package:counting_app/icons.dart';
+import 'package:counting_app/result.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
+import 'camera.dart';
 
 //class ImagePage extends StatefulWidget {
 //  final File? image;
@@ -14,8 +18,8 @@ import 'package:image_picker/image_picker.dart';
 //class ImagePageState extends State<ImagePage> {
 class ImagePage extends StatelessWidget {
   final File? image;
-  const ImagePage({Key? key, required this.image}) : super(key: key);
-
+  const ImagePage({Key? key, required this.image, required this.cameras}) : super(key: key);
+  final List<CameraDescription> cameras;
 //
   //Future pickImage() async {
   //    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -178,18 +182,27 @@ class ImagePage extends StatelessWidget {
                     .size
                     .width / 750) * 58.32,
               ),
-              SizedBox( // empty space
-                width: (MediaQuery
-                    .of(context)
-                    .size
-                    .width / 750) * 117.36,
-                height: (MediaQuery
-                    .of(context)
-                    .size
-                    .height / 1334) * 102.87,
-                child: const FittedBox(
-                  fit: BoxFit.contain,
-                  child: Icon( MyFlutterApp.image_solid, color: Color.fromRGBO(240, 235, 227, 1)),
+              GestureDetector(
+                onTap: () async {
+                  final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+                  if(image == null) return;
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ImagePage(image: this.image, cameras: cameras)));
+                },
+                child: SizedBox( // empty space
+                  width: (MediaQuery
+                      .of(context)
+                      .size
+                      .width / 750) * 117.36,
+                  height: (MediaQuery
+                      .of(context)
+                      .size
+                      .height / 1334) * 102.87,
+                  child: const FittedBox(
+                    fit: BoxFit.contain,
+                    child: Icon( MyFlutterApp.image_solid, color: Color.fromRGBO(240, 235, 227, 1)),
+                  ),
                 ),
               ),
               SizedBox( // empty space
@@ -204,6 +217,11 @@ class ImagePage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ResultPage(
+                              image: image)));
                   //Navigator.of(context).pop();
                 },
                 child: Container(
@@ -269,24 +287,33 @@ class ImagePage extends StatelessWidget {
                 width: (MediaQuery
                     .of(context)
                     .size
-                    .width / 750) * 120.32,
+                    .width / 750) * 105.32,
                 height:(MediaQuery
                     .of(context)
                     .size
                     .height / 1334) * 157 ,
               ),
-              SizedBox( // empty space
-                width: (MediaQuery
-                    .of(context)
-                    .size
-                    .width / 750) * 122.18,
-                height:(MediaQuery
-                    .of(context)
-                    .size
-                    .height / 1334) * 107 ,
-                child: const FittedBox(
-                  fit: BoxFit.contain,
-                  child: Icon( MyFlutterApp.camera_solid, color: Color.fromRGBO(240, 235, 227, 1)),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CameraPage(
+                              cameras: cameras)));
+                },
+                child: SizedBox( // empty space
+                  width: (MediaQuery
+                      .of(context)
+                      .size
+                      .width / 750) * 122.18,
+                  height:(MediaQuery
+                      .of(context)
+                      .size
+                      .height / 1334) * 107 ,
+                  child: const FittedBox(
+                    fit: BoxFit.contain,
+                    child: Icon( MyFlutterApp.camera_solid, color: Color.fromRGBO(240, 235, 227, 1)),
+                  ),
                 ),
               ),
               SizedBox( // empty space
