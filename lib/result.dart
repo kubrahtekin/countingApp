@@ -1,18 +1,41 @@
 import 'dart:io';
+import 'package:camera/camera.dart';
 import 'package:counting_app/icons.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+import 'camera.dart';
+import 'image.dart';
 
 
-class ResultPage extends StatelessWidget {
-  final File? image;
-  const ResultPage({Key? key, required this.image}) : super(key: key);
+class ResultPage extends StatefulWidget {
+  File? image;
+  final List<CameraDescription> cameras;
+  ResultPage({Key? key, required this.image, required this.cameras}) : super(key: key);
+
+  @override
+  ResultPageState createState() => ResultPageState();
+}
+
+class ResultPageState extends State<ResultPage> {
+
+
+  Future pickImage(BuildContext context) async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if(image == null) return;
+    final imageTemp = File(image.path);
+    setState(() => widget.image = imageTemp);
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ImagePage(image: widget.image, cameras: widget.cameras)));
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,   // delete debug
       theme: ThemeData(
-          scaffoldBackgroundColor: const Color.fromRGBO(228, 220, 207, 0.8)),
+          scaffoldBackgroundColor: const Color.fromRGBO(228, 220, 207, 1)),
       title: 'Counting App',
       home: Scaffold(
         appBar: AppBar(
@@ -51,7 +74,7 @@ class ResultPage extends StatelessWidget {
                       // make center y axis
                       //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
                       style: TextStyle(
-                          color: const Color.fromRGBO(228, 220, 207, 0.8),
+                          color: const Color.fromRGBO(240, 235, 227, 1),
                           fontSize: 72 * MediaQuery
                               .of(context)
                               .textScaleFactor,
@@ -79,9 +102,9 @@ class ResultPage extends StatelessWidget {
                     child:RichText(
                       text: TextSpan(
                         children: [
-                          TextSpan(text: "Count the ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsRegular')),
-                          TextSpan(text: "paperclips", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsSemibold')),
-                          TextSpan(text: ":", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsRegular')),
+                          TextSpan(text: "Count the ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsRegular')),
+                          TextSpan(text: "paperclips", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsSemibold')),
+                          TextSpan(text: ":", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsRegular')),
                         ],
                       ),
                     ),
@@ -131,9 +154,12 @@ class ResultPage extends StatelessWidget {
                 decoration: const BoxDecoration(
                   //shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.all(Radius.circular(30)),
-                  color: Color.fromRGBO(240, 235, 227, 1),
+                  color: Color.fromRGBO(87, 111, 114, 1),
                 ),
-                child: image != null ? Image.file(image!,fit: BoxFit.fill,): const Text("No image selected"),
+                child:ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child:widget.image != null ? Image.file(widget.image!,fit: BoxFit.fill,): const Text("No image selected"),
+                ),
                 //child: const FittedBox(
                 //  fit: BoxFit.contain,
                 //  child: Icon( MyFlutterApp.image_solid, color: Color.fromRGBO(240, 235, 227, 1)),
@@ -158,12 +184,101 @@ class ResultPage extends StatelessWidget {
                 padding: EdgeInsets.all(0),
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(30)),
-                  color: Color.fromRGBO(240, 235, 227, 1),
+                  color: Color.fromRGBO(125, 157, 156, 1),
                   //shape: BoxShape.circle,
                   //borderRadius: BorderRadius.circular(100),
                   //border: Border.all(width: 5, color: const Color.fromRGBO(125, 157, 156, 1)),
                   //color: const Color.fromRGBO(240, 235, 227, 1),
                 ),
+                child: Center(
+                  child:Container(
+                    width: (MediaQuery
+                        .of(context)
+                        .size
+                        .width / 750) * 517,
+                    height:(MediaQuery
+                        .of(context)
+                        .size
+                        .height / 1334) * 150 ,
+                    child: Column(
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(bottom:(MediaQuery
+                              .of(context)
+                              .size
+                              .height / 1334) * 24.5,left: ( MediaQuery
+                              .of(context)
+                              .size
+                              .width / 750) * 22.5, right: ( MediaQuery
+                              .of(context)
+                              .size
+                              .width / 750) * 357.5),
+                          width: (MediaQuery
+                              .of(context)
+                              .size
+                              .width / 750) * 137,
+                          height:(MediaQuery
+                              .of(context)
+                              .size
+                              .height / 1334) * 58,
+                          child:FittedBox(
+                            alignment: Alignment.topLeft,
+                            fit: BoxFit.contain,
+                            child:Text("Result",style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 48 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                          ),
+                        ),
+                        Container(
+                          width: (MediaQuery
+                              .of(context)
+                              .size
+                              .width / 750) * 517,
+                          height:(MediaQuery
+                              .of(context)
+                              .size
+                              .height / 1334) * 0 ,
+                          decoration: BoxDecoration(
+                            border: Border.all(width: (MediaQuery.of(context).size.width / 750) * 2.5 ,style: BorderStyle.solid,color: const Color.fromRGBO(240, 235, 227, 1),),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only( top: ( MediaQuery
+                              .of(context)
+                              .size
+                              .height / 1334) * 24.5, left: ( MediaQuery
+                              .of(context)
+                              .size
+                              .width / 750) * 22.5, right: ( MediaQuery
+                              .of(context)
+                              .size
+                              .width / 750) * 35.5 ),
+                          width: (MediaQuery
+                              .of(context)
+                              .size
+                              .width / 750) * 459,
+                          height:(MediaQuery
+                              .of(context)
+                              .size
+                              .height / 1334) * 43,
+                          child:FittedBox(
+                            alignment: Alignment.centerLeft,
+                            fit: BoxFit.contain,
+                            child:RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(text: "There are ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoRegular')),
+                                  TextSpan(text: "9 paperclips.", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
                 //child: FittedBox(
                 //  fit: BoxFit.contain,
                 //  child: Stack(
@@ -222,12 +337,120 @@ class ResultPage extends StatelessWidget {
                     .height / 1334) * 175 ,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(30)),
-                  color: Color.fromRGBO(240, 235, 227, 1)
+                  color: Color.fromRGBO(125, 157, 156, 1)
                 ),
-                //child: const FittedBox(
-                //  fit: BoxFit.contain,
-                //  child: Icon( MyFlutterApp.camera_rotate_solid, color: Color.fromRGBO(240, 235, 227, 1)),
-                //),
+                child: Center(
+                  child:Column(
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height:(MediaQuery
+                              .of(context)
+                              .size
+                              .height / 1334) * 20,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(bottom:(MediaQuery
+                              .of(context)
+                              .size
+                              .height / 1334) * 14.42,left: ( MediaQuery
+                              .of(context)
+                              .size
+                              .width / 750) * 40, right: ( MediaQuery
+                              .of(context)
+                              .size
+                              .width / 750) * 40),
+                          width: (MediaQuery
+                              .of(context)
+                              .size
+                              .width / 750) * 406,
+                          height:(MediaQuery
+                              .of(context)
+                              .size
+                              .height / 1334) * 43,
+                          child:FittedBox(
+                            alignment: Alignment.topLeft,
+                            fit: BoxFit.contain,
+                            child:RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(text: "new count for ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoRegular')),
+                                  TextSpan(text: "paperclips", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                  TextSpan(text: ":", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoRegular')),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                pickImage(context);
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only( left: ( MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width / 750) * 90,),
+                                width: (MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width / 750) * 88.47,
+                                height:(MediaQuery
+                                    .of(context)
+                                    .size
+                                    .height / 1334) * 77.55,
+                                child:const FittedBox(
+                                  alignment: Alignment.centerLeft,
+                                  fit: BoxFit.contain,
+                                  child:Icon(MyFlutterApp.image_solid,color: Color.fromRGBO(240, 235, 227, 1)),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: (MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width / 750) * 126.9,
+                              height:(MediaQuery
+                                  .of(context)
+                                  .size
+                                  .height / 1334) * 77.55,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => CameraPage(cameras: widget.cameras)));
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only( right: ( MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width / 750) * 92 ),
+                                width: (MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width / 750) * 88.63,
+                                height:(MediaQuery
+                                    .of(context)
+                                    .size
+                                    .height / 1334) * 77.55,
+                                child:const FittedBox(
+                                  alignment: Alignment.centerLeft,
+                                  fit: BoxFit.contain,
+                                  child:Icon(MyFlutterApp.camera_solid,color: Color.fromRGBO(240, 235, 227, 1)),
+                                ),
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
               ),
               SizedBox( // empty space
                 height:(MediaQuery

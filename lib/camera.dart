@@ -231,7 +231,7 @@ class CameraPageState extends State<CameraPage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ResultPage(
-                              image: capturedImages.last)));
+                              image: capturedImages.last, cameras: widget.cameras)));
                   //Navigator.of(context).pop();
                 },
                 child: Container(

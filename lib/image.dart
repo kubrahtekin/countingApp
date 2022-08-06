@@ -221,7 +221,7 @@ class ImagePage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ResultPage(
-                              image: image)));
+                              image: image, cameras: cameras,)));
                   //Navigator.of(context).pop();
                 },
                 child: Container(
