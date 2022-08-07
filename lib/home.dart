@@ -70,28 +70,35 @@ class HomePageState extends State<HomePage> {
                       .size
                       .height / 1334) * 53,
                 ),
-                SizedBox(
-                  height: (MediaQuery
-                      .of(context)
-                      .size
-                      .height / 1334) * 101,
-                  width: (MediaQuery
-                      .of(context)
-                      .size
-                      .width / 750) * 498,
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(
-                      'Counting App',
-                      textAlign: TextAlign.center,
-                      // make center y axis
-                      //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
-                      style: TextStyle(
-                          color: const Color.fromRGBO(228, 220, 207, 0.8),
-                          fontSize: 72 * MediaQuery
-                              .of(context)
-                              .textScaleFactor,
-                          fontFamily: 'PoppinsRegular'),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage(cameras: widget.cameras)));
+                  },
+                  child:SizedBox(
+                    height: (MediaQuery
+                        .of(context)
+                        .size
+                        .height / 1334) * 101,
+                    width: (MediaQuery
+                        .of(context)
+                        .size
+                        .width / 750) * 498,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'Counting App',
+                        textAlign: TextAlign.center,
+                        // make center y axis
+                        //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
+                        style: TextStyle(
+                            color: const Color.fromRGBO(228, 220, 207, 0.8),
+                            fontSize: 72 * MediaQuery
+                                .of(context)
+                                .textScaleFactor,
+                            fontFamily: 'PoppinsRegular'),
+                      ),
                     ),
                   ),
                 ),

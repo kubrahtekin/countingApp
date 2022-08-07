@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:camera/camera.dart';
 
+import 'home.dart';
 import 'image.dart';
 
 class CameraPage extends StatefulWidget {
@@ -89,28 +90,35 @@ class CameraPageState extends State<CameraPage> {
                       .size
                       .height / 1334) * 53,
                 ),
-                SizedBox(
-                  height: (MediaQuery
-                      .of(context)
-                      .size
-                      .height / 1334) * 101,
-                  width: (MediaQuery
-                      .of(context)
-                      .size
-                      .width / 750) * 498,
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(
-                      'Counting App',
-                      textAlign: TextAlign.center,
-                      // make center y axis
-                      //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
-                      style: TextStyle(
-                          color: const Color.fromRGBO(228, 220, 207, 0.8),
-                          fontSize: 72 * MediaQuery
-                              .of(context)
-                              .textScaleFactor,
-                          fontFamily: 'PoppinsRegular'),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage(cameras: widget.cameras)));
+                  },
+                  child:SizedBox(
+                    height: (MediaQuery
+                        .of(context)
+                        .size
+                        .height / 1334) * 101,
+                    width: (MediaQuery
+                        .of(context)
+                        .size
+                        .width / 750) * 498,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'Counting App',
+                        textAlign: TextAlign.center,
+                        // make center y axis
+                        //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
+                        style: TextStyle(
+                            color: const Color.fromRGBO(228, 220, 207, 0.8),
+                            fontSize: 72 * MediaQuery
+                                .of(context)
+                                .textScaleFactor,
+                            fontFamily: 'PoppinsRegular'),
+                      ),
                     ),
                   ),
                 ),
