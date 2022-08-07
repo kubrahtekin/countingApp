@@ -23,6 +23,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
 
+  String? item;
   File? image;
   ShowHide showBox = ShowHide(isVisible: false);
   ListItem dropdownValue = ListItem(title: ' ', isSelected: true, icon: const Icon(MyFlutterApp.circle_solid,color: Color.fromRGBO(87, 111, 114, 1), size: 24));
@@ -34,7 +35,7 @@ class HomePageState extends State<HomePage> {
     setState(() => this.image = imageTemp);
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ImagePage(image: this.image, cameras: widget.cameras)));
+        MaterialPageRoute(builder: (context) => ImagePage(image: this.image, cameras: widget.cameras, item : item)));
   }
 
 
@@ -180,8 +181,8 @@ class HomePageState extends State<HomePage> {
                     onChanged: (String? newValue) {
                       setState(() {
                         showBox.setIsVisible(!(newValue == ' '));
+                        item = newValue;
                         dropdownValue.title = newValue!;
-                        print(newValue);
                         //switch(newValue){
                         //    case 'paperclips' :
                         //      isVisible = !isVisible;
@@ -498,7 +499,7 @@ class HomePageState extends State<HomePage> {
                             onPressed: () {
                               Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) => CameraPage(cameras: widget.cameras)));
+                                          MaterialPageRoute(builder: (context) => CameraPage(cameras: widget.cameras,item: item)));
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,

@@ -18,8 +18,9 @@ import 'home.dart';
 //
 //class ImagePageState extends State<ImagePage> {
 class ImagePage extends StatelessWidget {
+  final String? item;
   final File? image;
-  const ImagePage({Key? key, required this.image, required this.cameras}) : super(key: key);
+  const ImagePage({Key? key, required this.image, required this.cameras, required this.item}) : super(key: key);
   final List<CameraDescription> cameras;
 //
   //Future pickImage() async {
@@ -111,7 +112,8 @@ class ImagePage extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(text: "Count the ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsRegular')),
-                          TextSpan(text: "paperclips", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsSemibold')),
+                          //TextSpan(text: "paperclips", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsSemibold')),
+                          TextSpan(text: item, style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsSemibold')),
                           TextSpan(text: ":", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsRegular')),
                         ],
                       ),
@@ -196,7 +198,7 @@ class ImagePage extends StatelessWidget {
                   if(image == null) return;
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ImagePage(image: this.image, cameras: cameras)));
+                      MaterialPageRoute(builder: (context) => ImagePage(image: this.image, cameras: cameras,item: item,)));
                 },
                 child: SizedBox( // empty space
                   width: (MediaQuery
@@ -229,7 +231,7 @@ class ImagePage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ResultPage(
-                              image: image, cameras: cameras,)));
+                              image: image, cameras: cameras,item: item,)));
                   //Navigator.of(context).pop();
                 },
                 child: Container(
@@ -307,7 +309,7 @@ class ImagePage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => CameraPage(
-                              cameras: cameras)));
+                              cameras: cameras,item: item,)));
                 },
                 child: SizedBox( // empty space
                   width: (MediaQuery

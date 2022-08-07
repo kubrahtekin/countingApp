@@ -11,8 +11,9 @@ import 'image.dart';
 
 class ResultPage extends StatefulWidget {
   File? image;
+  final String? item;
   final List<CameraDescription> cameras;
-  ResultPage({Key? key, required this.image, required this.cameras}) : super(key: key);
+  ResultPage({Key? key, required this.image, required this.cameras,required this.item}) : super(key: key);
 
   @override
   ResultPageState createState() => ResultPageState();
@@ -28,7 +29,7 @@ class ResultPageState extends State<ResultPage> {
     setState(() => widget.image = imageTemp);
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ImagePage(image: widget.image, cameras: widget.cameras)));
+        MaterialPageRoute(builder: (context) => ImagePage(image: widget.image, cameras: widget.cameras,item: widget.item,)));
   }
 
   @override
@@ -111,7 +112,8 @@ class ResultPageState extends State<ResultPage> {
                       text: TextSpan(
                         children: [
                           TextSpan(text: "Count the ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsRegular')),
-                          TextSpan(text: "paperclips", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsSemibold')),
+                          //TextSpan(text: "paperclips", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsSemibold')),
+                          TextSpan(text: widget.item, style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsSemibold')),
                           TextSpan(text: ":", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsRegular')),
                         ],
                       ),
@@ -276,7 +278,10 @@ class ResultPageState extends State<ResultPage> {
                               text: TextSpan(
                                 children: [
                                   TextSpan(text: "There are ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoRegular')),
-                                  TextSpan(text: "9 paperclips.", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                  //TextSpan(text: "9 paperclips.", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                  TextSpan(text: "9 ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                  TextSpan(text: widget.item, style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                  TextSpan(text: ".", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
                                 ],
                               ),
                             ),
@@ -384,7 +389,8 @@ class ResultPageState extends State<ResultPage> {
                               text: TextSpan(
                                 children: [
                                   TextSpan(text: "new count for ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoRegular')),
-                                  TextSpan(text: "paperclips", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                  //TextSpan(text: "paperclips", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                  TextSpan(text: widget.item, style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
                                   TextSpan(text: ":", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoRegular')),
                                 ],
                               ),
@@ -431,7 +437,7 @@ class ResultPageState extends State<ResultPage> {
                               onTap: () {
                                 Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => CameraPage(cameras: widget.cameras)));
+                                    MaterialPageRoute(builder: (context) => CameraPage(cameras: widget.cameras,item: widget.item,)));
                               },
                               child: Container(
                                 margin: EdgeInsets.only( right: ( MediaQuery

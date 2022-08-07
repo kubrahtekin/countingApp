@@ -10,7 +10,8 @@ import 'image.dart';
 
 class CameraPage extends StatefulWidget {
   final List<CameraDescription> cameras;
-  const CameraPage({Key? key, required this.cameras}) : super(key: key);
+  final String? item;
+  const CameraPage({Key? key, required this.cameras, required this.item}) : super(key: key);
 
   @override
   CameraPageState createState() => CameraPageState();
@@ -58,7 +59,7 @@ class CameraPageState extends State<CameraPage> {
     setState(() => this.image = imageTemp);
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ImagePage(image: this.image, cameras: widget.cameras)));
+        MaterialPageRoute(builder: (context) => ImagePage(image: this.image, cameras: widget.cameras,item: widget.item,)));
   }
 
   @override
@@ -143,7 +144,8 @@ class CameraPageState extends State<CameraPage> {
                       text: TextSpan(
                         children: [
                           TextSpan(text: "Count the ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsRegular')),
-                          TextSpan(text: "paperclips", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsSemibold')),
+                          //TextSpan(text: "paperclips", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsSemibold')),
+                          TextSpan(text: widget.item, style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsSemibold')),
                           TextSpan(text: ":", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'PoppinsRegular')),
                         ],
                       ),
@@ -239,7 +241,7 @@ class CameraPageState extends State<CameraPage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ResultPage(
-                              image: capturedImages.last, cameras: widget.cameras)));
+                              image: capturedImages.last, cameras: widget.cameras,item: widget.item,)));
                   //Navigator.of(context).pop();
                 },
                 child: Container(
