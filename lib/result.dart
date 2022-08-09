@@ -1,13 +1,48 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:counting_app/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 
 import 'camera.dart';
 import 'home.dart';
 import 'image.dart';
 
+Future<Count> fetchCount() async {
+  final response = await http.get(Uri.parse('https://mocki.io/v1/347c7334-edfb-47ef-b446-7afad578c39c'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return Count.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
+}
+
+class Count {
+  final String imageName;
+  final String item;
+  final int count;
+
+  const Count({
+    required this.imageName,
+    required this.item,
+    required this.count,
+  });
+
+  factory Count.fromJson(Map<String, dynamic> json) {
+    return Count(
+      imageName: json['imageName'],
+      item: json['item'],
+      count: json['count'],
+    );
+  }
+}
 
 class ResultPage extends StatefulWidget {
   File? image;
@@ -20,7 +55,7 @@ class ResultPage extends StatefulWidget {
 }
 
 class ResultPageState extends State<ResultPage> {
-
+  late Future<Count> futureCount;
 
   Future pickImage(BuildContext context) async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -30,6 +65,12 @@ class ResultPageState extends State<ResultPage> {
     Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => ImagePage(image: widget.image, cameras: widget.cameras,item: widget.item,)));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    futureCount = fetchCount();
   }
 
   @override
@@ -274,16 +315,23 @@ class ResultPageState extends State<ResultPage> {
                           child:FittedBox(
                             alignment: Alignment.centerLeft,
                             fit: BoxFit.contain,
-                            child:RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(text: "There are ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoRegular')),
-                                  //TextSpan(text: "9 paperclips.", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
-                                  TextSpan(text: "9 ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
-                                  TextSpan(text: widget.item, style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
-                                  TextSpan(text: ".", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
-                                ],
-                              ),
+                            child:FutureBuilder<Count> (
+                              future: futureCount,
+                              builder: (context, snapshot){
+                                return RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(text: "There are ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoRegular')),
+                                      //TextSpan(text: "9 paperclips.", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                      //TextSpan(text: "9 ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                      TextSpan(text: snapshot.data!.count.toString(), style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                      TextSpan(text: " ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                      TextSpan(text: widget.item, style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                      TextSpan(text: ".", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                    ],
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ),
