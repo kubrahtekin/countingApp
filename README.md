@@ -4,7 +4,7 @@ This project is a flutter project that gives you numbers of how many items(acord
 
 ## About App
 
-Counting app can work on both android and ios. It is an application that works with the Internet. Therefore, when you run the application, make sure you are connected to the Internet.
+Counting app can work on both android and ios. 
 
 #### ***Dependencies***
 
