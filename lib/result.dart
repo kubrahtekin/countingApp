@@ -1,10 +1,12 @@
 import 'dart:convert';
+//import 'dart:html';
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:counting_app/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
 
 import 'camera.dart';
 import 'home.dart';
@@ -25,6 +27,7 @@ Future<Count> fetchCount() async {
 }
 
 class Count {
+
   final String imageName;
   final String item;
   final int count;
@@ -43,6 +46,15 @@ class Count {
     );
   }
 }
+class Object1 {
+  // Use DetectionMode.stream when processing camera feed.
+// Use DetectionMode.single when processing a single image.
+// Options to configure the detector while using with base model.
+  final objectDetector =  ObjectDetector(options: ObjectDetectorOptions(mode: DetectionMode.single,classifyObjects: true,multipleObjects: true));
+
+  Object1 ();
+}
+
 
 class ResultPage extends StatefulWidget {
   File? image;
@@ -56,6 +68,11 @@ class ResultPage extends StatefulWidget {
 
 class ResultPageState extends State<ResultPage> {
   late Future<Count> futureCount;
+  late Future count;
+  late final List<DetectedObject> objects;
+  late final inputImage ;
+
+
 
   Future pickImage(BuildContext context) async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -67,11 +84,20 @@ class ResultPageState extends State<ResultPage> {
         MaterialPageRoute(builder: (context) => ImagePage(image: widget.image, cameras: widget.cameras,item: widget.item,)));
   }
 
+  Future countImage() async {
+    inputImage = InputImage.fromFile(File(widget.image!.path));
+    Object1 on1 = Object1();
+    objects = await on1.objectDetector.processImage(inputImage);
+    on1.objectDetector.close();
+  }
+
   @override
   void initState() {
     super.initState();
     futureCount = fetchCount();
+    count = countImage();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -315,16 +341,16 @@ class ResultPageState extends State<ResultPage> {
                           child:FittedBox(
                             alignment: Alignment.centerLeft,
                             fit: BoxFit.contain,
-                            child:FutureBuilder<Count> (
-                              future: futureCount,
+                            child:FutureBuilder (
+                              future: count,
                               builder: (context, snapshot){
                                 return RichText(
                                   text: TextSpan(
                                     children: [
                                       TextSpan(text: "There are ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoRegular')),
                                       //TextSpan(text: "9 paperclips.", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
-                                      //TextSpan(text: "9 ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
-                                      TextSpan(text: snapshot.data!.count.toString(), style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                      TextSpan(text: objects.length.toString(), style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
+                                      //TextSpan(text: snapshot.data!.count.toString(), style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
                                       TextSpan(text: " ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
                                       TextSpan(text: widget.item, style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
                                       TextSpan(text: ".", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),

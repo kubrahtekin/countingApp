@@ -19,7 +19,7 @@ class CameraPage extends StatefulWidget {
 
 class CameraPageState extends State<CameraPage> {
   /// Variables
-  File? image;
+  File? image ;
   late File imageFile;
   @override
   void initState() {
