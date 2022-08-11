@@ -2,7 +2,6 @@ import 'package:camera/camera.dart';
 import 'package:counting_app/camera.dart';
 import 'package:counting_app/icons.dart';
 import 'dart:io';
-import 'package:counting_app/open.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -10,8 +9,6 @@ import 'image.dart';
 
 Color appBar = const Color.fromRGBO(87, 111, 114, 1);
 bool control = false;
-//bool isVisible = !false;
-//ListItem dropdownValue = ListItem(title: ' ', isSelected: true, icon: const Icon(MyFlutterApp.circle_solid,color: Color.fromRGBO(87, 111, 114, 1), size: 24));
 
 class HomePage extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -45,7 +42,6 @@ class HomePageState extends State<HomePage> {
       debugShowCheckedModeBanner: false,   // delete debug
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromRGBO(228, 220, 207, 0.8),
-        //backgroundColor: const Color.fromRGBO(125, 157, 156, 1) ,
       ),
       title: 'Counting App',
       home: Scaffold(
@@ -92,7 +88,6 @@ class HomePageState extends State<HomePage> {
                         'Counting App',
                         textAlign: TextAlign.center,
                         // make center y axis
-                        //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
                         style: TextStyle(
                             color: const Color.fromRGBO(228, 220, 207, 0.8),
                             fontSize: 72 * MediaQuery
@@ -103,15 +98,6 @@ class HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                //const FittedBox(
-                //  fit: BoxFit.fitWidth,
-                //  child: Text(
-                //  'Counting App',
-                //  textAlign: TextAlign.center,    // make center y axis
-                //  //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
-                //  style: TextStyle(color: Color.fromRGBO(228, 220, 207, 0.8), fontSize: 72, fontFamily: 'Poppins'),
-                //  ),
-                //),
                 SizedBox( // empty space
                   height: (MediaQuery
                       .of(context)
@@ -133,7 +119,6 @@ class HomePageState extends State<HomePage> {
                       'Choose the object to count:',
                       textAlign: TextAlign.center,
                       // make center y axis
-                      //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
                       style: TextStyle(
                           color: const Color.fromRGBO(228, 220, 207, 0.8),
                           fontSize: 36 * MediaQuery
@@ -183,60 +168,8 @@ class HomePageState extends State<HomePage> {
                         showBox.setIsVisible(!(newValue == ' '));
                         item = newValue;
                         dropdownValue.title = newValue!;
-                        //switch(newValue){
-                        //    case 'paperclips' :
-                        //      isVisible = !isVisible;
-                        //    break;
-                        //    default:
-                        //      Navigator.push(
-                        //        context,
-                        //        MaterialPageRoute(builder: (context) => const SecondRoute()),
-                        //    );
-                        //    break;
-                        //}
-                        //Scaffold(
-                        //    body: Container(
-                        //      width: (MediaQuery
-                        //          .of(context)
-                        //          .size
-                        //          .width / 750) * 750,
-                        //      height: (MediaQuery
-                        //          .of(context)
-                        //          .size
-                        //          .height / 1334) * 58,
-                        //      color: const Color.fromRGBO(125, 157, 156, 1),
-                        //    ),
-                        //);
                       });
                     },
-                    //hint: ListView.builder(
-                    //    itemCount: _items.length,
-                    //    itemBuilder: (_, index) {
-                    //      return GestureDetector(
-                    //        onTap: () {
-                    //          for (int i = 0; i < _items.length; i++) {
-                    //            setState(() {
-                    //              if (index == i) {
-                    //                _items[index].isSelected = true;
-                    //              } else {
-                    //                //the condition to change the highlighted item
-                    //                _items[i].isSelected = false;
-                    //              }
-                    //            });
-                    //          }
-                    //        },
-                    //        child: Container(
-                    //          color: _items[index].isSelected
-                    //              ? Colors.blueAccent
-                    //              : Colors.white,
-                    //          child: ListTile(
-                    //            //i want to display different items for each list in the leading property.
-                    //            leading: Icon(_items[index].icon),
-                    //            title: Text(_items[index].title),
-                    //          ),
-                    //        ),
-                    //      );
-                    //    }),
                     items: <ListItem> [
                       ListItem(title: ' ', isSelected: true, icon: const Icon( MyFlutterApp.angle_right_solid, color: Color.fromRGBO(87, 111, 114, 1), size: 24)),
                       ListItem(title: 'paperclips', isSelected: false, icon: const Icon( MyFlutterApp.angle_right_solid, color: Color.fromRGBO(87, 111, 114, 1), size: 24)),
@@ -286,30 +219,11 @@ class HomePageState extends State<HomePage> {
                       );
                     }).toList(),
                   ),
-                  //child: const ExpansionTileSample(),
                 ),
                 //**************************************************************
-                //const Text(
-                //  'Choose the object to count:',
-                //  textAlign: TextAlign.center,    // make center y axis
-                //  //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 36, height: (MediaQuery.of(context).size.height/1334)*51),
-                //  style: TextStyle(color: Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36, fontFamily: 'Poppins'),
-                //),
               ],
             ),
           ),
-          //title: const Text(
-          //    "Counting App",
-          //    //textAlign: TextAlign.center,    // make center y axis
-          //    style: TextStyle(color: Color.fromRGBO(228, 220, 207, 0.8), fontSize: 72, fontFamily: 'Poppins'),
-          //  ),
-          //flexibleSpace: const Center(
-          //  child: Text(
-          //    "Choose the object to count:",
-          //    //textAlign: TextAlign.center,    // make center y axis
-          //    style: TextStyle(color: Color.fromRGBO(228, 220, 207, 0.8), fontSize: 36, fontFamily: 'Poppins'),
-          //  ),
-          //),
           shape: const RoundedRectangleBorder( // round appBar
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(30),
@@ -317,10 +231,6 @@ class HomePageState extends State<HomePage> {
           ),
         ),
 
-
-        //******************
-        // TODO: body part
-        //*****************
         body: Visibility(
             visible: showBox.getIsVisible(),
             maintainSize: true,
@@ -367,7 +277,6 @@ class HomePageState extends State<HomePage> {
                           'Choose the source of image:',
                           textAlign: TextAlign.center,
                           // make center y axis
-                          //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
                           style: TextStyle(
                               color: const Color.fromRGBO(228, 220, 207, 0.8),
                               fontSize: 36 * MediaQuery
@@ -402,16 +311,12 @@ class HomePageState extends State<HomePage> {
                             border: Border.all(
                                 color: const Color.fromRGBO(112, 112, 112, 1),
                                 width: 1.0,
-                                //style: BorderStyle.solid
                             ),
                           ),
                           padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                           child:TextButton(
                             onPressed: () {
                               pickImage(context);
-                              //Navigator.push(
-                              //    context,
-                              //    MaterialPageRoute(builder: (context) => ImagePage(image: image)));
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -447,9 +352,6 @@ class HomePageState extends State<HomePage> {
                                     fit: BoxFit.contain,
                                     child: Text(
                                       'gallery',
-                                      //textAlign: TextAlign.center,
-                                      // make center y axis
-                                      //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
                                       style: TextStyle(
                                           color: const Color.fromRGBO(228, 220, 207, 0.8),
                                           fontSize: 24 * MediaQuery
@@ -492,7 +394,6 @@ class HomePageState extends State<HomePage> {
                             border: Border.all(
                               color: const Color.fromRGBO(112, 112, 112, 1),
                               width: 1.0,
-                              //style: BorderStyle.solid
                             ),
                           ),
                           child: TextButton(
@@ -537,7 +438,6 @@ class HomePageState extends State<HomePage> {
                                       'camera',
                                       textAlign: TextAlign.center,
                                       // make center y axis
-                                      //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
                                       style: TextStyle(
                                           color: const Color.fromRGBO(228, 220, 207, 0.8),
                                           fontSize: 24 * MediaQuery
@@ -558,26 +458,7 @@ class HomePageState extends State<HomePage> {
               ),
             )
         ),
-        //******************************
-        //body: Container(
-        //  width: (MediaQuery
-        //      .of(context)
-        //      .size
-        //      .width / 750) * 750,
-        //  height: (MediaQuery
-        //      .of(context)
-        //      .size
-        //      .height / 1334) * 431,
-        //  decoration: const BoxDecoration(
-        //    borderRadius: BorderRadius.only(
-        //      bottomLeft: Radius.circular(30.0), // adjust to your liking
-        //      bottomRight: Radius.circular(30.0), // adjust to your liking
-        //    ),
-        //    color: Color.fromRGBO(125, 157, 156, 1),
-        //  ),
-        //),
-        // rounded navigation bar
-        //**
+
         bottomNavigationBar: Container(
           height: (MediaQuery
               .of(context)
@@ -590,15 +471,7 @@ class HomePageState extends State<HomePage> {
             ),
             color: Color.fromRGBO(87, 111, 114, 1), // put the color here
           ),
-          //child: BottomNavigationBar(backgroundColor: Colors.transparent), // don't forget to put it
         ),
-        //**
-        // empty bottom bar
-        //bottomNavigationBar: Container(
-        //  height: (MediaQuery.of(context).size.height/1334)*78,
-        //  color: appBar,
-        //
-        //),
       ),
     );
   }
@@ -629,16 +502,3 @@ class ShowHide {
 }
 
 
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        // Navigate back to first route when tapped.
-      },
-      child: const Text('Go back!'),
-    );
-  }
-}

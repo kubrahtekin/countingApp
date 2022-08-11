@@ -2,10 +2,6 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 import 'open.dart';
-import 'home.dart';
-import 'image.dart';
-import 'camera.dart';
-import 'result.dart';
 
 Color cream = const Color(0xE4DCCFCC);
 
@@ -22,16 +18,7 @@ class CountingApp extends StatelessWidget {
       initialRoute: '/open',    // start page
       routes: {
         '/open': (BuildContext context) => OpenPage(cameras: cameras),
-        // first
-        //'/home': (BuildContext context) => const HomePage(),
-        // second
-        //'/image' : (BuildContext context) => const ImagePage(),
-        // third
-        //'/camera' : (BuildContext context) => const CameraPage(),
-        //fourth
-        //'/result' : (BuildContext context) => const ResultPage(),
       },
-
     );
   }
 }

@@ -1,57 +1,20 @@
-import 'dart:convert';
-//import 'dart:html';
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:counting_app/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:http/http.dart' as http;
 import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
 
 import 'camera.dart';
 import 'home.dart';
 import 'image.dart';
 
-Future<Count> fetchCount() async {
-  final response = await http.get(Uri.parse('https://mocki.io/v1/347c7334-edfb-47ef-b446-7afad578c39c'));
 
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return Count.fromJson(jsonDecode(response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
-  }
-}
-
-class Count {
-
-  final String imageName;
-  final String item;
-  final int count;
-
-  const Count({
-    required this.imageName,
-    required this.item,
-    required this.count,
-  });
-
-  factory Count.fromJson(Map<String, dynamic> json) {
-    return Count(
-      imageName: json['imageName'],
-      item: json['item'],
-      count: json['count'],
-    );
-  }
-}
 class Object1 {
   // Use DetectionMode.stream when processing camera feed.
-// Use DetectionMode.single when processing a single image.
-// Options to configure the detector while using with base model.
+  // Use DetectionMode.single when processing a single image.
+  // Options to configure the detector while using with base model.
   final objectDetector =  ObjectDetector(options: ObjectDetectorOptions(mode: DetectionMode.single,classifyObjects: true,multipleObjects: true));
-
   Object1 ();
 }
 
@@ -67,7 +30,6 @@ class ResultPage extends StatefulWidget {
 }
 
 class ResultPageState extends State<ResultPage> {
-  late Future<Count> futureCount;
   late Future count;
   late final List<DetectedObject> objects;
   late final inputImage ;
@@ -85,6 +47,7 @@ class ResultPageState extends State<ResultPage> {
   }
 
   Future countImage() async {
+    // ml_kit_objectDetection
     inputImage = InputImage.fromFile(File(widget.image!.path));
     Object1 on1 = Object1();
     objects = await on1.objectDetector.processImage(inputImage);
@@ -94,7 +57,6 @@ class ResultPageState extends State<ResultPage> {
   @override
   void initState() {
     super.initState();
-    futureCount = fetchCount();
     count = countImage();
   }
 
@@ -147,7 +109,6 @@ class ResultPageState extends State<ResultPage> {
                         'Counting App',
                         textAlign: TextAlign.center,
                         // make center y axis
-                        //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
                         style: TextStyle(
                             color: const Color.fromRGBO(240, 235, 227, 1),
                             fontSize: 72 * MediaQuery
@@ -237,10 +198,6 @@ class ResultPageState extends State<ResultPage> {
                   borderRadius: BorderRadius.circular(30),
                   child:widget.image != null ? Image.file(widget.image!,fit: BoxFit.fill,): const Text("No image selected"),
                 ),
-                //child: const FittedBox(
-                //  fit: BoxFit.contain,
-                //  child: Icon( MyFlutterApp.image_solid, color: Color.fromRGBO(240, 235, 227, 1)),
-                //),
               ),
               SizedBox( // empty space
                 height:(MediaQuery
@@ -262,10 +219,6 @@ class ResultPageState extends State<ResultPage> {
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                   color: Color.fromRGBO(125, 157, 156, 1),
-                  //shape: BoxShape.circle,
-                  //borderRadius: BorderRadius.circular(100),
-                  //border: Border.all(width: 5, color: const Color.fromRGBO(125, 157, 156, 1)),
-                  //color: const Color.fromRGBO(240, 235, 227, 1),
                 ),
                 child: Center(
                   child:Container(
@@ -350,7 +303,6 @@ class ResultPageState extends State<ResultPage> {
                                       TextSpan(text: "There are ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoRegular')),
                                       //TextSpan(text: "9 paperclips.", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
                                       TextSpan(text: objects.length.toString(), style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
-                                      //TextSpan(text: snapshot.data!.count.toString(), style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
                                       TextSpan(text: " ", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
                                       TextSpan(text: widget.item, style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
                                       TextSpan(text: ".", style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(240, 235, 227, 1), fontSize: 36 * MediaQuery.of(context).textScaleFactor , fontFamily: 'RobotoBold')),
@@ -365,48 +317,7 @@ class ResultPageState extends State<ResultPage> {
                     ),
                   ),
                 ),
-
-                //child: FittedBox(
-                //  fit: BoxFit.contain,
-                //  child: Stack(
-                //    alignment: Alignment.center,
-                //    children: const <Widget>[
-                //      Icon(
-                //        MyFlutterApp.circle_solid,
-                //        size: 200,
-                //        color: Color.fromRGBO(228, 220, 207, 1),
-                //      ),
-                //      Text(
-                //        "count",
-                //        style: TextStyle(fontSize: 36,color: Color.fromRGBO(87, 111, 114, 1),fontFamily: 'Poppins'), //size:55
-                //      ),
-                //    ],
-                //  ),
-                //),
               ),
-              //SizedBox( // count icon first version
-              //  width: (MediaQuery
-              //      .of(context)
-              //      .size
-              //      .width / 1334) * 157,
-              //  height:(MediaQuery
-              //      .of(context)
-              //      .size
-              //      .height / 1334) * 157 ,
-              //  child: const FittedBox(
-              //    fit: BoxFit.contain,
-              //    //child: ElevatedButton.icon(
-              //    //  onPressed: () {},
-              //    //  icon: const Icon( MyFlutterApp.circle_solid, color: Color.fromRGBO(240, 235, 227, 1)),
-              //    //  label: const Text( 'Count', style: TextStyle(fontFamily: 'Poppins', fontSize: 36,color: Color.fromRGBO(87, 111, 114, 1))),
-              //    //  style: ElevatedButton.styleFrom(
-              //    //    shadowColor: const Color.fromRGBO(87, 111, 114, 1),
-              //    //    textStyle: const TextStyle(fontSize: 36),
-              //    //  ),
-              //    //),
-              //    child: Icon( MyFlutterApp.circle_solid, color: Color.fromRGBO(240, 235, 227, 1)),
-              //  ),
-              //),
               SizedBox( // empty space
                 height:(MediaQuery
                     .of(context)
@@ -533,7 +444,6 @@ class ResultPageState extends State<ResultPage> {
                                 ),
                               ),
                             ),
-
                           ],
                         ),
                       ],
@@ -547,18 +457,8 @@ class ResultPageState extends State<ResultPage> {
                     .height / 1334) * 48 ,
               ),
             ],
-          )
-
-          //child: BottomNavigationBar(backgroundColor: Colors.transparent), // don't forget to put it
+          ),
         ),
-
-        //**
-        // empty bottom bar
-        //bottomNavigationBar: Container(
-        //  height: (MediaQuery.of(context).size.height/1334)*78,
-        //  color: appBar,
-        //
-        //),
       ),
     );
   }

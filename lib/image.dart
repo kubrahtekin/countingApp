@@ -8,27 +8,13 @@ import 'package:image_picker/image_picker.dart';
 import 'camera.dart';
 import 'home.dart';
 
-//class ImagePage extends StatefulWidget {
-//  final File? image;
-//  const ImagePage({Key? key, this.image}) : super(key: key);
-//
-//  @override
-//  ImagePageState createState() => ImagePageState();
-//}
-//
-//class ImagePageState extends State<ImagePage> {
+
 class ImagePage extends StatelessWidget {
   final String? item;
   final File? image;
   const ImagePage({Key? key, required this.image, required this.cameras, required this.item}) : super(key: key);
   final List<CameraDescription> cameras;
-//
-  //Future pickImage() async {
-  //    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-  //    if(image == null) return;
-  //    final imageTemp = File(image.path);
-  //    setState(() => this.image = imageTemp);
-  //}
+
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +66,6 @@ class ImagePage extends StatelessWidget {
                         'Counting App',
                         textAlign: TextAlign.center,
                         // make center y axis
-                        //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
                         style: TextStyle(
                             color: const Color.fromRGBO(228, 220, 207, 0.8),
                             fontSize: 72 * MediaQuery
@@ -130,45 +115,10 @@ class ImagePage extends StatelessWidget {
           ),
         ),
         // rounded navigation bar
-        //**
-        //body:FutureBuilder<dynamic>(
-        //    future:pickImage(),
-        //  builder: (context, snapshot) {
-        //    if (!snapshot.hasData) return Container(); // or some other placeholder
-        //    return Container(
-        //     // decoration: BoxDecoration(
-        //     //     image: DecorationImage(
-        //     //       image: FileImage(snapshot.data),
-        //     //       fit: BoxFit.cover,
-        //     //     )),
-        //      child: image != null ? Image.file(image!): const Text("No image selected") ,
-        //    );
-        //  },
-            //initialData:image != null ? Image.file(image!): const Text("No image selected") ,
-            //builder:(BuildContext context, AsyncSnapshot<dynamic> snapshot){
-            //  image != null ? Image.file(image!): const Text("No image selected");
-            //}
-            //image != null ? Image.file(image!): const Text("No image selected"),
-        //),
         body:Center(
           child:Container(
-            //margin: EdgeInsets.only(top: 0, bottom: (MediaQuery.of(context).size.height / 1334) * 110, left: 0),
             alignment: Alignment.center,
-            //width: (MediaQuery
-            //    .of(context)
-            //    .size
-            //    .width / 750) * 750,
-            //height: (MediaQuery
-            //    .of(context)
-            //    .size
-            //    .height / 1334) * 1334,
             child:image != null ? Image.file(image!,fit: BoxFit.fill,): const Text("No image selected"),
-            //child:Image.file(image!,fit: BoxFit.fill,) ,
-            //child:FittedBox(
-            //  alignment: Alignment.center,
-            //  fit: BoxFit.fill,
-            //  child: image != null ? Image.file(image!): const Text("No image selected"),
-            //),
           ),
         ),
         bottomNavigationBar: Container(
@@ -247,9 +197,7 @@ class ImagePage extends StatelessWidget {
                   padding: const EdgeInsets.all(0),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    //borderRadius: BorderRadius.circular(100),
                     border: Border.all(width: 5, color: const Color.fromRGBO(125, 157, 156, 1)),
-                    //color: const Color.fromRGBO(240, 235, 227, 1),
                   ),
                   child: FittedBox(
                     fit: BoxFit.contain,
@@ -270,29 +218,6 @@ class ImagePage extends StatelessWidget {
                   ),
                 ),
               ),
-              //SizedBox( // count icon first version
-              //  width: (MediaQuery
-              //      .of(context)
-              //      .size
-              //      .width / 1334) * 157,
-              //  height:(MediaQuery
-              //      .of(context)
-              //      .size
-              //      .height / 1334) * 157 ,
-              //  child: const FittedBox(
-              //    fit: BoxFit.contain,
-              //    //child: ElevatedButton.icon(
-              //    //  onPressed: () {},
-              //    //  icon: const Icon( MyFlutterApp.circle_solid, color: Color.fromRGBO(240, 235, 227, 1)),
-              //    //  label: const Text( 'Count', style: TextStyle(fontFamily: 'Poppins', fontSize: 36,color: Color.fromRGBO(87, 111, 114, 1))),
-              //    //  style: ElevatedButton.styleFrom(
-              //    //    shadowColor: const Color.fromRGBO(87, 111, 114, 1),
-              //    //    textStyle: const TextStyle(fontSize: 36),
-              //    //  ),
-              //    //),
-              //    child: Icon( MyFlutterApp.circle_solid, color: Color.fromRGBO(240, 235, 227, 1)),
-              //  ),
-              //),
               SizedBox( // empty space
                 width: (MediaQuery
                     .of(context)
@@ -334,15 +259,7 @@ class ImagePage extends StatelessWidget {
               ),
             ],
           ),
-          //child: BottomNavigationBar(backgroundColor: Colors.transparent), // don't forget to put it
         ),
-        //**
-        // empty bottom bar
-        //bottomNavigationBar: Container(
-        //  height: (MediaQuery.of(context).size.height/1334)*78,
-        //  color: appBar,
-        //
-        //),
       ),
     );
   }

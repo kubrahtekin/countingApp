@@ -112,7 +112,6 @@ class CameraPageState extends State<CameraPage> {
                         'Counting App',
                         textAlign: TextAlign.center,
                         // make center y axis
-                        //style: TextStyle(color: const Color.fromRGBO(228, 220, 207, 0.8), fontFamily: 'Poppins',fontSize: 72, height: (MediaQuery.of(context).size.height/1334)*101),
                         style: TextStyle(
                             color: const Color.fromRGBO(228, 220, 207, 0.8),
                             fontSize: 72 * MediaQuery
@@ -257,9 +256,7 @@ class CameraPageState extends State<CameraPage> {
                   padding: EdgeInsets.all(0),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    //borderRadius: BorderRadius.circular(100),
                     border: Border.all(width: 5, color: const Color.fromRGBO(125, 157, 156, 1)),
-                    //color: const Color.fromRGBO(240, 235, 227, 1),
                   ),
                   child: FittedBox(
                     fit: BoxFit.contain,
@@ -280,29 +277,6 @@ class CameraPageState extends State<CameraPage> {
                   ),
                 ),
               ),
-              //SizedBox( // count icon first version
-              //  width: (MediaQuery
-              //      .of(context)
-              //      .size
-              //      .width / 1334) * 157,
-              //  height:(MediaQuery
-              //      .of(context)
-              //      .size
-              //      .height / 1334) * 157 ,
-              //  child: const FittedBox(
-              //    fit: BoxFit.contain,
-              //    //child: ElevatedButton.icon(
-              //    //  onPressed: () {},
-              //    //  icon: const Icon( MyFlutterApp.circle_solid, color: Color.fromRGBO(240, 235, 227, 1)),
-              //    //  label: const Text( 'Count', style: TextStyle(fontFamily: 'Poppins', fontSize: 36,color: Color.fromRGBO(87, 111, 114, 1))),
-              //    //  style: ElevatedButton.styleFrom(
-              //    //    shadowColor: const Color.fromRGBO(87, 111, 114, 1),
-              //    //    textStyle: const TextStyle(fontSize: 36),
-              //    //  ),
-              //    //),
-              //    child: Icon( MyFlutterApp.circle_solid, color: Color.fromRGBO(240, 235, 227, 1)),
-              //  ),
-              //),
               SizedBox( // empty space
                 width: (MediaQuery
                     .of(context)
@@ -351,15 +325,7 @@ class CameraPageState extends State<CameraPage> {
               ),
             ],
           ),
-          //child: BottomNavigationBar(backgroundColor: Colors.transparent), // don't forget to put it
         ),
-        //**
-        // empty bottom bar
-        //bottomNavigationBar: Container(
-        //  height: (MediaQuery.of(context).size.height/1334)*78,
-        //  color: appBar,
-        //
-        //),
       ),
     );
   }

@@ -32,18 +32,6 @@ class OpenPageState extends State<OpenPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Counting App',
-      // TODO: add this part logo (-)
-      //home: const Center(
-      //  child: Text(
-      //    'novadsa',
-      //    textAlign: TextAlign.center,
-      //  ),
-      //),
-      //home: SvgPicture.network(
-      //  dogUrl,
-      //  placeholderBuilder: (context) => const CircularProgressIndicator(),
-      //  height: 128.0,
-      //),
       home: Container(
           padding: const EdgeInsets.fromLTRB(0, 0, 0, 0), //apply padding to some sides only
           decoration: const BoxDecoration(color: Color.fromRGBO(228, 220, 207, 1)),
@@ -56,10 +44,7 @@ class OpenPageState extends State<OpenPage> {
                   width: (MediaQuery.of(context).size.width/750)*462 ,
                   child:Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    //crossAxisAlignment: CrossAxisAlignment.baseline,
-                    //mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      //Image.asset('assets/images/novadsa.png'),  //, width: (MediaQuery.of(context).size.width/750)*61 , height: (MediaQuery.of(context).size.height/1334)*61
                       Container(
                         margin: const EdgeInsets.only(left: 0, right: 0,bottom: 7.5,top: 0),
                         padding: const EdgeInsets.symmetric(vertical: 0 , horizontal: 0),
@@ -85,7 +70,6 @@ class OpenPageState extends State<OpenPage> {
                               color: Color.fromRGBO(0,189,172,1),
                             ),
                           ]),
-                          //child: Icon(MyFlutterApp.novadsa_logo, color:  Color.fromRGBO(0,189,172,1),),
                         ),
                       ),
                       //const Icon(MyFlutterApp.novadsa_logo, color:  Color.fromRGBO(0,189,172,1),),
@@ -100,47 +84,11 @@ class OpenPageState extends State<OpenPage> {
                           ),
                         ),
                       ),
-                      // MediaQuery.of(context).textScaleFactor made font flexiblity
-                      //Text(
-                      //  " nova",
-                      //  textAlign: TextAlign.justify,
-                      //  style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(87, 111, 114, 1), fontSize: 92 * MediaQuery.of(context).textScaleFactor, fontFamily: 'Poppins'),
-                      //),
-                      //Text(
-                      //  "DSA",
-                      //  //textDirection: TextDirection.ltr,
-                      //  textAlign: TextAlign.justify,
-                      //  style: TextStyle(decoration: TextDecoration.none, color: const Color.fromRGBO(87, 111, 114, 1), fontSize: 72 * MediaQuery.of(context).textScaleFactor, fontFamily: 'Poppins'),   // 72 -> font size
-                      //)
                     ],
                   ),
                 ),
-
-                //const Text(
-                //  'nova',
-                //  //maxLines: 5,
-                //  //textAlign: TextAlign.center,
-                //  style: TextStyle(color: Color.fromRGBO(87, 111, 114, 1), fontSize: 92, fontFamily: 'Poppins'),
-                //),
               ]
-          )
-        //child: Stack(children: <Widget>[
-        //  Center(
-        //    child: Image.asset('assets/images/novadsa.png'),
-        //    ),
-        //  Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        //    Container(
-        //        //width: double.infinity,
-        //        color: const Color.fromRGBO(228, 220, 207, 0.8),
-        //        //padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-        //        child: const Text(
-        //          'nova',
-        //          //maxLines: 5,
-        //          textAlign: TextAlign.center,
-        //          style: TextStyle(color: Color.fromRGBO(87, 111, 114, 1), fontSize: 72, fontFamily: 'Poppins'),
-        //        )),
-        //  ]),
-        //]),
+          ),
       ),
     );
   }
