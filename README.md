@@ -1,16 +1,16 @@
-# counting_app
+# Counting App
 
-A new Flutter project.
+This project is a flutter project that gives you numbers of how many items(acording to selected item) are found by taking a picture from the camera or select a picture from gallery.
 
-## Getting Started
+## About App
 
-This project is a starting point for a Flutter application.
+Counting app can work on both android and ios. It is an application that works with the Internet. Therefore, when you run the application, make sure you are connected to the Internet.
 
-A few resources to get you started if this is your first Flutter project:
+#### ***Dependencies***
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- image_picker: ^0.8.5+3  (helps to get image from galery) 
+- camera: ^0.10.0+1  (helps to take a picture from camera)
+- google_mlkit_object_detection: ^0.5.0  ([machine learning kit for object detection](https://pub.dev/packages/google_mlkit_object_detection))
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### Author: Hatice Kübra TEKİN
+
